@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "point-of-sale",
+    "slug": "point-of-sale"
+  }
+}
