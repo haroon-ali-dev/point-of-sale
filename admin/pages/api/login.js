@@ -1,6 +1,7 @@
 const validate = require("./validations/users");
 const pool = require("./db/db");
 const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
 
 export default async function handler(req, res) {
   const { error } = validate(req.body);
@@ -13,7 +14,9 @@ export default async function handler(req, res) {
     const validPassword = await bcrypt.compare(req.body.password, rs.rows[0].password);
     if (!validPassword) return res.status(400).send({ message: "Invalid email or password." });
 
-    res.send("ok");
+    const token = jwt.sign({ uId: rs.rows[0].id, email: rs.rows[0].email }, process.env.jwtPrivateKey);
+
+    res.json({ token });
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
