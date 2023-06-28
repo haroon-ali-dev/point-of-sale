@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
 
 export default function Home() {
     const [email, setEmail] = useState("");
@@ -17,6 +17,9 @@ export default function Home() {
                     <Text style={styles.label}>Password</Text>
                     <TextInput style={styles.input} value={password} onChangeText={setPassword} />
                 </View>
+                <Pressable style={styles.loginBtn}>
+                    <Text style={styles.loginBtnText}>Login</Text>
+                </Pressable>
             </View>
         </View>
     );
@@ -50,5 +53,15 @@ const styles = StyleSheet.create({
         padding: 10,
         marginTop: 5,
         marginBottom: 10
+    },
+    loginBtn: {
+        backgroundColor: 'black',
+        padding: 20,
+        marginTop: 5
+    },
+    loginBtnText: {
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 20
     }
 });
