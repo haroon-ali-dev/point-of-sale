@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
+import { useNavigation } from "expo-router";
 
 import Notification from "../components/Notification";
 
 export default function Login() {
+    const navigation = useNavigation();
+
     const [notification, setNotification] = useState({
         message: "",
         display: false,
@@ -23,7 +26,7 @@ export default function Login() {
             const data = await res.json();
 
             if (res.status === 200) {
-                console.log(data.token);
+                navigation.navigate("pos");
             } else {
                 setNotification({
                     message: data.message,
