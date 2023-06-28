@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
 import { useNavigation } from "expo-router";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Notification from "../components/Notification";
 
@@ -26,6 +27,8 @@ export default function Login() {
             const data = await res.json();
 
             if (res.status === 200) {
+                await AsyncStorage.setItem('token', data.token);
+
                 navigation.navigate("pos");
             } else {
                 setNotification({
