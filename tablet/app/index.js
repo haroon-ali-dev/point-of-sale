@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     },
     loginBtn: {
         backgroundColor: 'black',
-        padding: 20,
+        padding: 15,
         marginTop: 5,
         borderRadius: 10
     },
