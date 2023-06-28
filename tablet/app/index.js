@@ -1,9 +1,52 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
 
-export default function Home() {
+import Notification from "../components/Notification";
+
+export default function Login() {
+    const [notification, setNotification] = useState({
+        message: "",
+        display: false,
+        bgColor: ""
+    });
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const login = async () => {
+        try {
+            const res = await fetch(`http://192.168.8.101:3000/api/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await res.json();
+
+            if (res.status === 200) {
+                console.log(data.token);
+            } else {
+                setNotification({
+                    message: data.message,
+                    display: true,
+                    bgColor: "#E2412E"
+                });
+            }
+        } catch (error) {
+            setNotification({
+                message: error.message,
+                display: true,
+                bgColor: "#E2412E"
+            });
+        } finally {
+            setTimeout(() => {
+                setNotification({
+                    message: "",
+                    display: false,
+                    bgColor: "#E2412E"
+                });
+            }, 3000);
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -18,8 +61,14 @@ export default function Home() {
                     <TextInput style={styles.input} value={password} onChangeText={setPassword} />
                 </View>
                 <Pressable style={styles.loginBtn}>
-                    <Text style={styles.loginBtnText}>Login</Text>
+                    <Text style={styles.loginBtnText} onPress={login}>Login</Text>
                 </Pressable>
+                {notification.display && (
+                    <Notification
+                        message={notification.message}
+                        bgColor={notification.bgColor}
+                    />
+                )}
             </View>
         </View>
     );
