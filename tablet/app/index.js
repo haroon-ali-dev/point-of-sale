@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
-import { useNavigation } from "expo-router";
+import { useRouter, Link } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Notification from "../components/Notification";
 
 export default function Login() {
-    const navigation = useNavigation();
+    const router = useRouter();
 
     const [notification, setNotification] = useState({
         message: "",
@@ -29,7 +29,7 @@ export default function Login() {
             if (res.status === 200) {
                 await AsyncStorage.setItem('token', data.token);
 
-                navigation.navigate("pos");
+                router.push('/pos');
             } else {
                 setNotification({
                     message: data.message,
@@ -69,6 +69,7 @@ export default function Login() {
                 <Pressable style={styles.loginBtn}>
                     <Text style={styles.loginBtnText} onPress={login}>Login</Text>
                 </Pressable>
+                <Link style={[styles.loginBtn, { color: 'white' }]} href='/pos'>POS</Link>
                 {notification.display && (
                     <Notification
                         message={notification.message}
@@ -98,10 +99,10 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     label: {
-        fontSize: 20
+        fontSize: 18
     },
     input: {
-        fontSize: 20,
+        fontSize: 18,
         borderWidth: 1,
         width: 400,
         height: 50,
@@ -118,6 +119,6 @@ const styles = StyleSheet.create({
     loginBtnText: {
         color: 'white',
         textAlign: 'center',
-        fontSize: 20
+        fontSize: 18
     }
 });

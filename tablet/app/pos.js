@@ -2,13 +2,20 @@ import { View, Text, StyleSheet } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import NavBar from "../components/NavBar";
+import AuthOnly from "../components/AuthOnly";
 
-export default function POS() {
+export default function PointOfSale() {
+    return (
+        <AuthOnly><PointOfSaleContent /></AuthOnly>
+    );
+}
+
+function PointOfSaleContent() {
     const readToken = async () => {
         try {
             const token = await AsyncStorage.getItem('token');
             if (token !== null) {
-                // console.log(token);
+                console.log(token);
             }
         } catch (e) {
             console.log(e.message);

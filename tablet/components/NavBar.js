@@ -35,10 +35,10 @@ const styles = StyleSheet.create({
         padding: 10,
         marginTop: 5,
         borderRadius: 10,
-        width: 75
+        width: 100
     },
     logoutBtnText: {
-        fontSize: 15,
+        fontSize: 18,
         textAlign: 'center'
     }
 });
