@@ -1,12 +1,14 @@
 import { View, Text, StyleSheet } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import NavBar from "../components/NavBar";
+
 export default function POS() {
     const readToken = async () => {
         try {
             const token = await AsyncStorage.getItem('token');
             if (token !== null) {
-                console.log(token);
+                // console.log(token);
             }
         } catch (e) {
             console.log(e.message);
@@ -16,9 +18,12 @@ export default function POS() {
     readToken();
 
     return (
-        <View style={styles.container}>
-            <Text>POS Page</Text>
-        </View>
+        <>
+            <NavBar />
+            <View style={styles.container}>
+                <Text style={{ fontSize: 30 }}>POS Page</Text>
+            </View>
+        </>
     );
 }
 
