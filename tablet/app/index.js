@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
-import { useRouter, Link } from "expo-router";
+import { useRouter } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Notification from "../components/Notification";
@@ -69,7 +69,6 @@ export default function Login() {
                 <Pressable style={styles.loginBtn}>
                     <Text style={styles.loginBtnText} onPress={login}>Login</Text>
                 </Pressable>
-                <Link style={[styles.loginBtn, { color: 'white' }]} href='/pos'>POS</Link>
                 {notification.display && (
                     <Notification
                         message={notification.message}
