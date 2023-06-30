@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import Head from 'next/head'
-import { Card, Form, Button } from 'react-bootstrap';
+import { Card, Form, Button, Spinner } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -12,6 +13,8 @@ const schema = yup.object({
 }).required();
 
 export default function Register() {
+  const [reqInProcess, setReqInProcess] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -21,6 +24,8 @@ export default function Register() {
   });
 
   const onSubmit = async (formData) => {
+    setReqInProcess(true);
+
     try {
       const res = await fetch(`/api/register`, {
         method: "POST",
@@ -33,6 +38,8 @@ export default function Register() {
       console.log(data);
     } catch (error) {
       console.log(error.message);
+    } finally {
+      setReqInProcess(false);
     }
   }
 
@@ -70,7 +77,13 @@ export default function Register() {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Button variant="success" type="submit">Register</Button>
+              <Button variant="success" type="submit" disabled={reqInProcess}>
+                Register
+                {reqInProcess &&
+                  <Spinner className="ms-2" animation="border" role="status" size="sm">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>}
+              </Button>
             </Form>
           </Card.Body>
         </Card>
