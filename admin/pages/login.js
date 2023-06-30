@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AppContext } from './_app';
 import { useRouter } from 'next/router';
 import { Card, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
@@ -11,7 +12,8 @@ const schema = yup.object({
   password: yup.string().min(3).max(15).required().label("Password"),
 }).required();
 
-export default function Register() {
+export default function Login() {
+  const { setToken } = useContext(AppContext);
   const [reqInProcess, setReqInProcess] = useState(false);
   const [alert, setAlert] = useState([false, "", ""]);
 
@@ -39,7 +41,7 @@ export default function Register() {
       const data = await res.json();
 
       if (res.status === 200) {
-        localStorage.setItem("token", data.token);
+        setToken(data.token);
         
         router.push('/products');
       } else {
