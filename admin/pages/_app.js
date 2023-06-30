@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import { Ysabeau } from 'next/font/google'
 
+import NavBar from '@/components/NavBar';
+
 import '@/styles/globals.css'
 
 const ysabeau = Ysabeau({
@@ -16,6 +18,9 @@ export default function App({ Component, pageProps }) {
         <meta name="description" content="Admin panel for point of sale system." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <header>
+        <NavBar />
+      </header>
       <Component {...pageProps} />
     </div>
   );
