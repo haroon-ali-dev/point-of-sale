@@ -1,15 +1,14 @@
-import { AppContext } from "@/pages/_app";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export default function AuthOnly({ children }) {
     const [loading, setLoading] = useState(true);
-    const { token } = useContext(AppContext);
 
     const router = useRouter();
 
     useEffect(() => {
         function checkAuth() {
+            const token = localStorage.getItem("token");
             if (token) {
                 setLoading(false);
             } else {

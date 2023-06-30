@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AppContext } from '@/pages/_app';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -11,6 +11,15 @@ export default function NavBar() {
     const { token, setToken } = useContext(AppContext);
 
     const router = useRouter();
+
+    useEffect(() => {
+        function getToken() {
+            const token = localStorage.getItem("token");
+            setToken(token);
+        }
+
+        getToken();
+    }, []);
 
     const logout = () => {
         localStorage.removeItem("token");

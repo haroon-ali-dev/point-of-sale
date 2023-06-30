@@ -41,6 +41,7 @@ export default function Login() {
       const data = await res.json();
 
       if (res.status === 200) {
+        localStorage.setItem("token", data.token);
         setToken(data.token);
         
         router.push('/products');
