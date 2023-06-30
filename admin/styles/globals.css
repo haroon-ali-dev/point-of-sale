@@ -2,10 +2,28 @@
 
 .card {
   width: 80%;
-  margin: 50px auto 0px auto;
+  margin: 50px auto 50px auto;
 }
 
 .card-title {
   text-align: center;
   font-size: 30px;
+}
+
+@media (min-width: 576px) {
+  .card {
+    width: 45%;
+  }
+}
+
+@media (min-width: 992px) {
+  .card {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .card {
+    width: 25%;
+  }
 }

@@ -12,7 +12,7 @@ export default function Register() {
       <main>
         <Card>
           <Card.Body>
-            <Card.Title>Login</Card.Title>
+            <Card.Title>Register</Card.Title>
             <Form>
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email</Form.Label>
@@ -28,7 +28,7 @@ export default function Register() {
                 />
               </Form.Group>
 
-              <Button variant="success" type="submit">Login</Button>
+              <Button variant="success" type="submit">Register</Button>
             </Form>
           </Card.Body>
         </Card>
