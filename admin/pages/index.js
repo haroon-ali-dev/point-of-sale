@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head'
-import { Card, Form, Button, Spinner } from 'react-bootstrap';
+import { Card, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -14,6 +14,7 @@ const schema = yup.object({
 
 export default function Register() {
   const [reqInProcess, setReqInProcess] = useState(false);
+  const [alert, setAlert] = useState([false, "", ""]);
 
   const {
     register,
@@ -25,6 +26,7 @@ export default function Register() {
 
   const onSubmit = async (formData) => {
     setReqInProcess(true);
+    setAlert([false, "", ""]);
 
     try {
       const res = await fetch(`/api/register`, {
@@ -35,9 +37,13 @@ export default function Register() {
 
       const data = await res.json();
 
-      console.log(data);
+      if (res.status === 200) {
+        setAlert([true, "success", data.message]);
+      } else {
+        setAlert([true, "danger", data.message]);
+      }
     } catch (error) {
-      console.log(error.message);
+      setAlert([true, "danger", error.message]);
     } finally {
       setReqInProcess(false);
     }
@@ -85,6 +91,11 @@ export default function Register() {
                   </Spinner>}
               </Button>
             </Form>
+
+            {alert[0] &&
+              <Alert className="mt-3" variant={alert[1]}>
+                {alert[2]}
+              </Alert>}
           </Card.Body>
         </Card>
       </main>
