@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import Head from 'next/head'
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { Card, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,6 +14,8 @@ const schema = yup.object({
 export default function Register() {
   const [reqInProcess, setReqInProcess] = useState(false);
   const [alert, setAlert] = useState([false, "", ""]);
+
+  const router = useRouter();
 
   const {
     register,
@@ -36,7 +39,9 @@ export default function Register() {
       const data = await res.json();
 
       if (res.status === 200) {
-        console.log(data);
+        localStorage.setItem("token", data.token);
+        
+        router.push('/products');
       } else {
         setAlert([true, "danger", data.message]);
       }
