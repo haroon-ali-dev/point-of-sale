@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.1.1",
     "bcrypt": "^5.1.0",
     "bootstrap": "^5.3.0",
     "dotenv": "^16.3.1",
@@ -19,6 +20,8 @@
     "react": "18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-bootstrap-icons": "^1.10.3",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.1",
+    "yup": "^1.2.0"
   }
 }
