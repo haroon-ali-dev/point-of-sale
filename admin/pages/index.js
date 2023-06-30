@@ -20,8 +20,20 @@ export default function Register() {
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = async (data) => {
-    console.log(data);
+  const onSubmit = async (formData) => {
+    try {
+      const res = await fetch(`/api/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+
+      console.log(data);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   return (
