@@ -15,10 +15,9 @@ export const AppContext = React.createContext();
 
 export default function App({ Component, pageProps }) {
   const [token, setToken] = useState(null);
-  const [uId, setUId] = useState(null);
 
   return (
-    <AppContext.Provider value={{ token, setToken, uId, setUId }}>
+    <AppContext.Provider value={{ token, setToken }}>
       <div className={ysabeau.className}>
         <Head>
           <meta name="description" content="Admin panel for point of sale system." />

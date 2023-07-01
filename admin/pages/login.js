@@ -6,7 +6,6 @@ import { Card, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import jwt from "jwt-decode";
 
 const schema = yup.object({
   email: yup.string().max(256).email().required().label("Email"),
@@ -14,7 +13,7 @@ const schema = yup.object({
 }).required();
 
 export default function Login() {
-  const { setToken, setUId } = useContext(AppContext);
+  const { setToken } = useContext(AppContext);
   const [reqInProcess, setReqInProcess] = useState(false);
   const [alert, setAlert] = useState([false, "", ""]);
 
@@ -43,9 +42,7 @@ export default function Login() {
 
       if (res.status === 200) {
         localStorage.setItem("token", data.token);
-        const { uId } = jwt(data.token);
         setToken(data.token);
-        setUId(uId);
         
         router.push('/products');
       } else {

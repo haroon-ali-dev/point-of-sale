@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import { useState, useContext } from 'react';
-import { AppContext } from '../_app';
+import { useState, useEffect } from 'react';
 import { Card, Form, Button, Spinner, Alert, InputGroup } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import jwt from "jwt-decode";
 
 import AuthOnly from '@/components/AuthOnly';
 
@@ -19,7 +19,6 @@ const schema = yup.object({
     price: yup.number().typeError("Price must be a number.")
         .positive().min(0.01)
         .test("Decimal digits", "Price cannot have more than two decimal digits.", (value) => {
-            console.log(value.toString());
             if (value.toString().includes(".")) {
                 return value.toString().split(".")[1].length <= 2;
             }
@@ -30,7 +29,7 @@ const schema = yup.object({
 }).required();
 
 export function ProductsContent() {
-    const { uId } = useContext(AppContext);
+    const [tokenData, setTokenData] = useState(["", ""]);
     const [reqInProcess, setReqInProcess] = useState(false);
     const [alert, setAlert] = useState([false, "", ""]);
 
@@ -42,10 +41,40 @@ export function ProductsContent() {
         resolver: yupResolver(schema)
     });
 
-    console.log(uId);
+    useEffect(() => {
+        function getToken() {
+            const token = localStorage.getItem("token");
+            const { uId } = jwt(token);
+            setTokenData([token, uId]);
+        }
+
+        getToken();
+    }, []);
 
     const onSubmit = async (formData) => {
-        console.log(formData);
+        setReqInProcess(true);
+        setAlert([false, "", ""]);
+
+        try {
+            const res = await fetch(`/api/products`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ uId: tokenData[1], ...formData })
+            });
+
+            const data = await res.json();
+
+            if (res.status === 200) {
+                console.log(data);
+                setAlert([true, "success", "Product created."]);
+            } else {
+                setAlert([true, "danger", data.message]);
+            }
+        } catch (error) {
+            setAlert([true, "danger", error.message]);
+        } finally {
+            setReqInProcess(false);
+        }
     }
 
     return (
