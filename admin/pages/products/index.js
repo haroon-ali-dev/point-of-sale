@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AppContext } from '../_app';
 import { Card, Form, Button, Spinner, Alert, InputGroup } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -29,6 +30,7 @@ const schema = yup.object({
 }).required();
 
 export function ProductsContent() {
+    const { uId } = useContext(AppContext);
     const [reqInProcess, setReqInProcess] = useState(false);
     const [alert, setAlert] = useState([false, "", ""]);
 
@@ -39,6 +41,8 @@ export function ProductsContent() {
     } = useForm({
         resolver: yupResolver(schema)
     });
+
+    console.log(uId);
 
     const onSubmit = async (formData) => {
         console.log(formData);
