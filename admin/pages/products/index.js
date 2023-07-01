@@ -18,6 +18,18 @@ const schema = yup.object({
 }).required();
 
 export function ProductsContent() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(schema)
+    });
+
+    const onSubmit = async (formData) => {
+        console.log(formData);
+    }
+
     return (
         <>
             <Head>
