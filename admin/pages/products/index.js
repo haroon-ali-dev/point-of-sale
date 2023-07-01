@@ -15,8 +15,17 @@ export default function Products() {
 
 const schema = yup.object({
     name: yup.string().min(3).max(50).required().label("Name"),
-    price: yup.number().required().label("Price"),
-    quantity: yup.number().required().label("Quantity"),
+    price: yup.number().typeError("Price must be a number.")
+        .positive().min(0.01)
+        .test("Decimal digits", "Price cannot have more than two decimal digits.", (value) => {
+            console.log(value.toString());
+            if (value.toString().includes(".")) {
+                return value.toString().split(".")[1].length <= 2;
+            }
+            return true;
+        })
+        .required().label("Price"),
+    quantity: yup.number().typeError("Quantity must be a number.").integer().min(1).required().label("Quantity"),
 }).required();
 
 export function ProductsContent() {
@@ -62,6 +71,7 @@ export function ProductsContent() {
                                 <Form.Label>Price</Form.Label>
                                 <Form.Control
                                     type="text"
+                                    placeholder='0.00'
                                     {...register("price")}
                                     isInvalid={errors.price?.message}
                                 />
@@ -74,6 +84,7 @@ export function ProductsContent() {
                                 <Form.Label>Quantity</Form.Label>
                                 <Form.Control
                                     type="text"
+                                    placeholder='0'
                                     {...register("quantity")}
                                     isInvalid={errors.quantity?.message}
                                 />
