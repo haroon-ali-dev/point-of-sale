@@ -1,9 +1,11 @@
 import Head from 'next/head'
-import AuthOnly from '@/components/AuthOnly';
+import { useState } from 'react';
 import { Card, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
+import AuthOnly from '@/components/AuthOnly';
 
 export default function Products() {
     return (
@@ -18,6 +20,9 @@ const schema = yup.object({
 }).required();
 
 export function ProductsContent() {
+    const [reqInProcess, setReqInProcess] = useState(false);
+    const [alert, setAlert] = useState([false, "", ""]);
+
     const {
         register,
         handleSubmit,

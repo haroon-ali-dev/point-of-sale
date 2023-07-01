@@ -1,5 +1,5 @@
+import Head from 'next/head';
 import { useState } from 'react';
-import Head from 'next/head'
 import { Card, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

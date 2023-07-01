@@ -30,7 +30,7 @@ export default function NavBar() {
     return (
         <Navbar className={styles.navbar} expand="lg" bg='dark' data-bs-theme="dark">
             <Container className={styles.navBarContainer}>
-                <Navbar.Brand href="/" as={Link}><House size={30} /></Navbar.Brand>
+                <Navbar.Brand href={token ? "/products" : "/"} as={Link}><House size={30} /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className={styles.navBarCollapse}>
                     <Nav>
@@ -40,8 +40,14 @@ export default function NavBar() {
                                 <Nav.Link href="/login" as={Link}>Login</Nav.Link>
                             </>
                         }
-                        {token && <Nav.Link href="#" onClick={logout}>Logout</Nav.Link>}
-                        
+                        {token && (
+                            <>
+                                <Nav.Link href="/products" as={Link}>Products</Nav.Link>
+                                <Nav.Link href="/orders" as={Link}>Orders</Nav.Link>
+                                <Nav.Link href="#" onClick={logout}>Logout</Nav.Link>
+                            </>
+                        )}
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>
