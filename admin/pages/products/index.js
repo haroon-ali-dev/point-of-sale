@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useState } from 'react';
-import { Card, Form, Button, Spinner, Alert } from 'react-bootstrap';
+import { Card, Form, Button, Spinner, Alert, InputGroup } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -69,15 +69,20 @@ export function ProductsContent() {
 
                             <Form.Group className="mb-3" controlId="price">
                                 <Form.Label>Price</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder='0.00'
-                                    {...register("price")}
-                                    isInvalid={errors.price?.message}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.price?.message}
-                                </Form.Control.Feedback>
+                                <InputGroup>
+                                    <InputGroup.Text id="inputGroupPrepend">£</InputGroup.Text>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder='0.00'
+                                        aria-describedby="inputGroupPrepend"
+                                        {...register("price")}
+                                        isInvalid={errors.price?.message}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.price?.message}
+                                    </Form.Control.Feedback>
+                                </InputGroup>
+
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="quantity">
