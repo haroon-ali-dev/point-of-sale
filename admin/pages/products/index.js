@@ -1,12 +1,21 @@
 import Head from 'next/head'
 import AuthOnly from '@/components/AuthOnly';
 import { Card, Form, Button, Spinner, Alert } from 'react-bootstrap';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export default function Products() {
     return (
         <AuthOnly><ProductsContent /></AuthOnly>
     );
 }
+
+const schema = yup.object({
+    name: yup.string().min(3).max(50).required().label("Name"),
+    price: yup.number().required().label("Price"),
+    quantity: yup.number().required().label("Quantity"),
+}).required();
 
 export function ProductsContent() {
     return (
@@ -18,34 +27,46 @@ export function ProductsContent() {
                 <h1 className='heading'>Products</h1>
                 <Card>
                     <Card.Body>
-                        <Card.Title>Register</Card.Title>
+                        <Card.Title>Create Product</Card.Title>
                         <Form onSubmit={handleSubmit(onSubmit)}>
-                            <Form.Group className="mb-3" controlId="email">
-                                <Form.Label>Email</Form.Label>
+                            <Form.Group className="mb-3" controlId="name">
+                                <Form.Label>Name</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    {...register("email")}
-                                    isInvalid={errors.email?.message}
+                                    {...register("name")}
+                                    isInvalid={errors.name?.message}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    {errors.email?.message}
+                                    {errors.name?.message}
                                 </Form.Control.Feedback>
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="password">
-                                <Form.Label>Password</Form.Label>
+                            <Form.Group className="mb-3" controlId="price">
+                                <Form.Label>Price</Form.Label>
                                 <Form.Control
-                                    type="password"
-                                    {...register("password")}
-                                    isInvalid={errors.password?.message}
+                                    type="text"
+                                    {...register("price")}
+                                    isInvalid={errors.price?.message}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    {errors.password?.message}
+                                    {errors.price?.message}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="quantity">
+                                <Form.Label>Quantity</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    {...register("quantity")}
+                                    isInvalid={errors.quantity?.message}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.quantity?.message}
                                 </Form.Control.Feedback>
                             </Form.Group>
 
                             <Button variant="success" type="submit" disabled={reqInProcess}>
-                                Register
+                                Create
                                 {reqInProcess &&
                                     <Spinner className="ms-2" animation="border" role="status" size="sm">
                                         <span className="visually-hidden">Loading...</span>
