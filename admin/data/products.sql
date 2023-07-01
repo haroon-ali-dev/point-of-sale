@@ -4,7 +4,7 @@ CREATE TABLE products (
     p_id VARCHAR(10) UNIQUE,
     name VARCHAR(50),
     price NUMERIC(4, 2),
-    quantity INT
+    quantity INT,
     CONSTRAINT fk_user
       FOREIGN KEY(u_id) 
 	  REFERENCES users(id)
