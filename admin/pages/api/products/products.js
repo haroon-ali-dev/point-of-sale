@@ -1,5 +1,5 @@
-const validate = require("./validations/products");
-const pool = require("./db/db");
+const validate = require("../validations/products");
+const pool = require("../db/db");
 import { nanoid } from "nanoid";
 
 export default async function handler(req, res) {
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
       res.json(dbRes.rows[0]);
     } catch (error) {
-      res.status(500).json({ message: error.message })
+      res.status(500).json({ message: error.message });
     }
   } else {
     res.send("Method not allowed.");
