@@ -1,23 +1,19 @@
 import { NextResponse } from "next/server";
-const jwt = require('jsonwebtoken');
+import { jwtVerify } from 'jose';
 
-export async function middleware(req, event) {
+export async function middleware(req) {
     const token = req.headers.get('x-auth-token');
     if (!token) return NextResponse.json({ message: 'Access denied. No token provided.' }, { status: 401 });
 
     try {
-        const decoded = jwt.verify(token, process.env.jwtPrivateKey);
-        req.user = decoded;
-        NextResponse.next();
+        await jwtVerify(token, new TextEncoder().encode(process.env.jwtPrivateKey));
+        return NextResponse.next();
     }
     catch(ex) {
         return NextResponse.json({ message: 'Invalid token.' }, { status: 400 });
     }
-
-    
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-    matcher: '/api/products',
+    matcher: '/api/products'
 }

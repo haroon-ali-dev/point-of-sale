@@ -58,7 +58,7 @@ export function ProductsContent() {
         try {
             const res = await fetch(`/api/products`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", "x-auth-token": tokenData[0] },
                 body: JSON.stringify({ uId: tokenData[1], ...formData })
             });
 
