@@ -32,6 +32,7 @@ export function ProductsContent() {
     const [tokenData, setTokenData] = useState(["", ""]);
     const [reqInProcess, setReqInProcess] = useState(false);
     const [alert, setAlert] = useState([false, "", ""]);
+    const [products, setProducts] = useState([]);
 
     const {
         register,
@@ -65,7 +66,7 @@ export function ProductsContent() {
             const data = await res.json();
 
             if (res.status === 200) {
-                console.log(data);
+                setProducts([...products, data]);
                 setAlert([true, "success", "Product created."]);
             } else {
                 setAlert([true, "danger", data.message]);
@@ -84,7 +85,7 @@ export function ProductsContent() {
             </Head>
             <main>
                 <h1 className='heading'>Products</h1>
-                <Card>
+                <Card className='card-form'>
                     <Card.Body>
                         <Card.Title>Create Product</Card.Title>
                         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -144,6 +145,14 @@ export function ProductsContent() {
                             <Alert className="mt-3" variant={alert[1]}>
                                 {alert[2]}
                             </Alert>}
+                    </Card.Body>
+                </Card>
+
+                <Card className='card-list'>
+                    <Card.Body>
+                        {products.length <= 0 && (
+                            <p style={{ textAlign: 'center', margin: '0px' }}>No products.</p>
+                        )}
                     </Card.Body>
                 </Card>
             </main>

@@ -1,6 +1,6 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-.card {
+.card-form, .card-list {
   width: 80%;
   margin: 50px auto 50px auto;
 }
@@ -16,19 +16,19 @@
 }
 
 @media (min-width: 576px) {
-  .card {
+  .card-form {
     width: 45%;
   }
 }
 
 @media (min-width: 992px) {
-  .card {
+  .card-form {
     width: 30%;
   }
 }
 
 @media (min-width: 1400px) {
-  .card {
+  .card-form {
     width: 25%;
   }
 }

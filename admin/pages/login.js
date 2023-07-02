@@ -61,7 +61,7 @@ export default function Login() {
         <title>Login - POS Admin</title>
       </Head>
       <main>
-        <Card>
+        <Card className='card-form'>
           <Card.Body>
             <Card.Title>Login</Card.Title>
             <Form onSubmit={handleSubmit(onSubmit)}>

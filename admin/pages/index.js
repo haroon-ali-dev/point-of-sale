@@ -55,7 +55,7 @@ export default function Register() {
         <title>Register - POS Admin</title>
       </Head>
       <main>
-        <Card>
+        <Card className='card-form'>
           <Card.Body>
             <Card.Title>Register</Card.Title>
             <Form onSubmit={handleSubmit(onSubmit)}>
