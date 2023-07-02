@@ -12,7 +12,6 @@
     "@hookform/resolvers": "^3.1.1",
     "bcrypt": "^5.1.0",
     "bootstrap": "^5.3.0",
-    "dotenv": "^16.3.1",
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
