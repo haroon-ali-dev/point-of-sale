@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react';
-import { Card, Form, Button, Spinner, Alert, InputGroup } from 'react-bootstrap';
+import { Card, Form, Button, Spinner, Alert, InputGroup, Table } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -152,6 +152,28 @@ export function ProductsContent() {
                     <Card.Body>
                         {products.length <= 0 && (
                             <p style={{ textAlign: 'center', margin: '0px' }}>No products.</p>
+                        )}
+                        {products.length > 0 && (
+                            <Table striped bordered hover>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {products.map((product, i) => (
+                                        <tr key={i}>
+                                            <td>{product["p_id"]}</td>
+                                            <td>{product["name"]}</td>
+                                            <td>{product["price"]}</td>
+                                            <td>{product["quantity"]}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
                         )}
                     </Card.Body>
                 </Card>
