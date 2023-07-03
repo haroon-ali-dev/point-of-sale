@@ -15,7 +15,7 @@ function PointOfSaleContent() {
         try {
             const token = await AsyncStorage.getItem('token');
             if (token !== null) {
-                console.log(token);
+                
             }
         } catch (e) {
             console.log(e.message);
@@ -28,7 +28,17 @@ function PointOfSaleContent() {
         <>
             <NavBar />
             <View style={styles.container}>
-                <Text style={{ fontSize: 30 }}>POS Page</Text>
+                <View style={styles.containerAddProduct}>
+
+                </View>
+                <View style={styles.containerRightPanel}>
+                    <View style={styles.containerCart}>
+
+                    </View>
+                    <View style={styles.containerPayBtn}>
+
+                    </View>
+                </View>
             </View>
         </>
     );
@@ -37,7 +47,22 @@ function PointOfSaleContent() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        flexDirection: 'row'
+    },
+    containerAddProduct: {
+        flex: 2,
+        borderWidth: 1
+    },
+    containerRightPanel: {
+        flex: 1,
+        borderWidth: 1
+    },
+    containerCart: {
+        flex: 3,
+        borderWidth: 1
+    },
+    containerPayBtn: {
+        flex: 1,
+        borderWidth: 1
     }
 });
