@@ -39,7 +39,12 @@ export default function Product({ product, token }) {
         handleSubmit,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(schema)
+        resolver: yupResolver(schema),
+        defaultValues: {
+            name: product.name,
+            price: product.price,
+            quantity: product.quantity
+        }
     });
 
     const onSubmit = async (formData) => {
