@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet } from "react-native";
+import { useState } from "react";
+import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import NavBar from "../components/NavBar";
@@ -11,11 +12,13 @@ export default function PointOfSale() {
 }
 
 function PointOfSaleContent() {
+    const [productId, setProductId] = useState("");
+
     const readToken = async () => {
         try {
             const token = await AsyncStorage.getItem('token');
             if (token !== null) {
-                
+
             }
         } catch (e) {
             console.log(e.message);
@@ -29,7 +32,15 @@ function PointOfSaleContent() {
             <NavBar />
             <View style={styles.container}>
                 <View style={styles.containerAddProduct}>
-
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Product ID"
+                        value={productId}
+                        onChangeText={setProductId}
+                    />
+                    <Pressable style={styles.btn}>
+                        <Text style={styles.btnText}>Add</Text>
+                    </Pressable>
                 </View>
                 <View style={styles.containerRightPanel}>
                     <View style={styles.containerCart}>
@@ -51,7 +62,27 @@ const styles = StyleSheet.create({
     },
     containerAddProduct: {
         flex: 2,
-        borderWidth: 1
+        flexDirection: 'row',
+        gap: 10,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    input: {
+        fontSize: 18,
+        borderWidth: 1,
+        width: 300,
+        height: 50,
+        padding: 10
+    },
+    btn: {
+        backgroundColor: 'black',
+        paddingHorizontal: 20,
+        paddingVertical: 10
+    },
+    btnText: {
+        color: 'white',
+        fontSize: 18
     },
     containerRightPanel: {
         flex: 1,
