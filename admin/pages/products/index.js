@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Card, Form, Button, Spinner, Alert, InputGroup, Table, Stack } from 'react-bootstrap';
+import { Card, Form, Button, Spinner, Alert, InputGroup, Table, Stack, Modal } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -32,6 +32,7 @@ const schema = yup.object({
 
 export function ProductsContent() {
     const [tokenData, setTokenData] = useState(["", ""]);
+    const [showDeleteModal, setShowDeleteModal] = useState([false, 0]);
     const [reqInProcess, setReqInProcess] = useState(false);
     const [alert, setAlert] = useState([false, "", ""]);
     const [loading, setLoading] = useState(true);
@@ -106,6 +107,30 @@ export function ProductsContent() {
             <Head>
                 <title>Products - POS Admin</title>
             </Head>
+
+            <Modal show={showDeleteModal[0]} onHide={() => setShowDeleteModal([false, 0])}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirmation</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Are You Sure?
+                    {showDeleteModal[1]}
+                    {alert[0] &&
+                        <Alert className="mt-3" variant={alert[1]}>
+                            {alert[2]}
+                        </Alert>}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={() => deleteMember(showDeleteModal[1])} disabled={reqInProcess}>
+                        Yes
+                        {reqInProcess &&
+                            <Spinner className="ms-2" animation="border" role="status" size="sm">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>}
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
             <main>
                 <h1 className='heading'>Products</h1>
                 <Card className='card-form'>
@@ -201,7 +226,9 @@ export function ProductsContent() {
                                             <td>
                                                 <Stack direction="horizontal" gap={3}>
                                                     <Link className='table-btns' href={`products/${product.id}/${tokenData[0]}`}><PencilSquare /></Link>
-                                                    <Trash />
+                                                    <Trash onClick={() => {
+                                                        setReqInProcess(false); setAlert([false, "", ""]);; setShowDeleteModal([true, product.id]);
+                                                    }} />
                                                 </Stack>
                                             </td>
                                         </tr>
