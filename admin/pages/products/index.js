@@ -200,7 +200,7 @@ export function ProductsContent() {
                                             <td>{product["quantity"]}</td>
                                             <td>
                                                 <Stack direction="horizontal" gap={3}>
-                                                    <Link className='table-btns' href={`products/${product.id}`}><PencilSquare /></Link>
+                                                    <Link className='table-btns' href={`products/${product.id}/${tokenData[0]}`}><PencilSquare /></Link>
                                                 </Stack>
                                             </td>
                                         </tr>

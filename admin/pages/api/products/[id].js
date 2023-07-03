@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
         const dbRes = await pool.query("SELECT * FROM products WHERE id = $1", [+id]);
   
-        res.json(dbRes.rows);
+        res.json(dbRes.rows[0]);
       } catch (error) {
         res.status(500).json({ message: error.message });
       }
