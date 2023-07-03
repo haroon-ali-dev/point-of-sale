@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import jwt from "jwt-decode";
-import { PencilSquare } from 'react-bootstrap-icons';
+import { PencilSquare, Trash } from 'react-bootstrap-icons';
 
 import AuthOnly from '@/components/AuthOnly';
 
@@ -201,6 +201,7 @@ export function ProductsContent() {
                                             <td>
                                                 <Stack direction="horizontal" gap={3}>
                                                     <Link className='table-btns' href={`products/${product.id}/${tokenData[0]}`}><PencilSquare /></Link>
+                                                    <Trash />
                                                 </Stack>
                                             </td>
                                         </tr>
