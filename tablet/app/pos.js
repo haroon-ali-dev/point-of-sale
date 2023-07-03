@@ -27,6 +27,22 @@ function PointOfSaleContent() {
 
     readToken();
 
+    const addProduct = async () => {
+        try {
+            const token = await AsyncStorage.getItem('token');
+
+            const res = await fetch(`http://192.168.8.101:3000/api/products/${productId}`, {
+                headers: { "x-auth-token": token }
+            });
+
+            const data = await res.json();
+
+            console.log(data);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
     return (
         <>
             <NavBar />
@@ -38,7 +54,7 @@ function PointOfSaleContent() {
                         value={productId}
                         onChangeText={setProductId}
                     />
-                    <Pressable style={styles.btn}>
+                    <Pressable style={styles.btn} onPress={addProduct}>
                         <Text style={styles.btnText}>Add</Text>
                     </Pressable>
                 </View>
