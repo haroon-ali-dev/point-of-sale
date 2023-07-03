@@ -102,6 +102,13 @@ export function ProductsContent() {
         }
     }
 
+    const deleteProduct = async (id) => {
+        setReqInProcess(true);
+        setAlert([false, "", ""]);
+
+        console.log(id);
+    }
+
     return (
         <>
             <Head>
@@ -114,14 +121,13 @@ export function ProductsContent() {
                 </Modal.Header>
                 <Modal.Body>
                     Are You Sure?
-                    {showDeleteModal[1]}
                     {alert[0] &&
                         <Alert className="mt-3" variant={alert[1]}>
                             {alert[2]}
                         </Alert>}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" onClick={() => deleteMember(showDeleteModal[1])} disabled={reqInProcess}>
+                    <Button variant="danger" onClick={() => deleteProduct(showDeleteModal[1])} disabled={reqInProcess}>
                         Yes
                         {reqInProcess &&
                             <Spinner className="ms-2" animation="border" role="status" size="sm">
