@@ -17,7 +17,7 @@ export default function Products() {
 const schema = yup.object({
     name: yup.string().min(3).max(50).required().label("Name"),
     price: yup.number().typeError("Price must be a number.")
-        .positive().min(0.01)
+        .positive().min(0.01).max(9999.99)
         .test("Decimal digits", "Price cannot have more than two decimal digits.", (value) => {
             if (value.toString().includes(".")) {
                 return value.toString().split(".")[1].length <= 2;
