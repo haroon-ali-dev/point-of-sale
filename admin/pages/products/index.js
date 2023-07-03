@@ -95,7 +95,7 @@ export function ProductsContent() {
                 setAlert([true, "danger", "There was a problem."]);
             }
         } catch (error) {
-            console.log(data.message);
+            console.log(error.message);
             setAlert([true, "danger", "There was a problem."]);
         } finally {
             setReqInProcess(false);
@@ -106,7 +106,28 @@ export function ProductsContent() {
         setReqInProcess(true);
         setAlert([false, "", ""]);
 
-        console.log(id);
+        try {
+            const res = await fetch(`/api/products/${id}`, {
+                method: "DELETE",
+                headers: { "x-auth-token": tokenData[0] }
+            });
+
+            const data = await res.json();
+
+            if (res.status === 200) {
+                setProducts(products.filter(product => product.id !== id));
+                setAlert([true, "success", "Product deleted."]);
+                setShowDeleteModal([false, 0]);
+            } else {
+                console.log(data.message);
+                setAlert([true, "danger", data.message]);
+            }
+        } catch (error) {
+            console.log(error.message);
+            setAlert([true, "danger", "There was a problem."]);
+        } finally {
+            setReqInProcess(false);
+        }
     }
 
     return (
