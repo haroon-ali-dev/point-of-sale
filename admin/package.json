@@ -24,6 +24,7 @@
     "react-bootstrap-icons": "^1.10.3",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.1",
+    "swr": "^2.2.0",
     "yup": "^1.2.0"
   }
 }

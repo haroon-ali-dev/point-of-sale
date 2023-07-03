@@ -32,6 +32,7 @@ export function ProductsContent() {
     const [tokenData, setTokenData] = useState(["", ""]);
     const [reqInProcess, setReqInProcess] = useState(false);
     const [alert, setAlert] = useState([false, "", ""]);
+    const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
 
     const {
@@ -43,13 +44,31 @@ export function ProductsContent() {
     });
 
     useEffect(() => {
-        function getToken() {
+        async function getProducts() {
             const token = localStorage.getItem("token");
             const { uId } = jwt(token);
-            setTokenData([token, uId]);
+
+            try {
+                const res = await fetch(`/api/products/user/${uId}`, {
+                    headers: { "x-auth-token": token }
+                });
+    
+                const data = await res.json();
+
+                if (res.status === 200) {
+                    setLoading(false);
+                    setProducts(data);
+                    setTokenData([token, uId]);
+                } else {
+                    console.log(data);
+                }
+    
+            } catch (error) {
+                console.log(error.message);
+            }
         }
 
-        getToken();
+        getProducts();
     }, []);
 
     const onSubmit = async (formData) => {
@@ -69,10 +88,12 @@ export function ProductsContent() {
                 setProducts([...products, data]);
                 setAlert([true, "success", "Product created."]);
             } else {
-                setAlert([true, "danger", data.message]);
+                console.log(data.message);
+                setAlert([true, "danger", "There was a problem."]);
             }
         } catch (error) {
-            setAlert([true, "danger", error.message]);
+            console.log(data.message);
+            setAlert([true, "danger", "There was a problem."]);
         } finally {
             setReqInProcess(false);
         }
@@ -149,10 +170,15 @@ export function ProductsContent() {
 
                 <Card className='card-list'>
                     <Card.Body>
-                        {products.length <= 0 && (
+                        {loading && (
+                            <Spinner className="ms-auto me-auto" style={{ display: 'block' }} animation="border" role="status" size="sm">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                        )}
+                        {(!loading && products.length <= 0) && (
                             <p style={{ textAlign: 'center', margin: '0px' }}>No products.</p>
                         )}
-                        {products.length > 0 && (
+                        {(!loading && products.length > 0) && (
                             <Table striped bordered hover>
                                 <thead>
                                     <tr>
