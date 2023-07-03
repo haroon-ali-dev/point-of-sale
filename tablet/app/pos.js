@@ -31,7 +31,7 @@ function PointOfSaleContent() {
         try {
             const token = await AsyncStorage.getItem('token');
 
-            const res = await fetch(`http://192.168.8.101:3000/api/products/${productId}`, {
+            const res = await fetch(`http://192.168.8.101:3000/api/products/product-id/${productId}`, {
                 headers: { "x-auth-token": token }
             });
 
