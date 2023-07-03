@@ -15,6 +15,10 @@
   margin-top: 50px;
 }
 
+.table-btns {
+  color: black;
+}
+
 @media (min-width: 576px) {
   .card-form {
     width: 45%;

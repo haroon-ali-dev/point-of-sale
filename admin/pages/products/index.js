@@ -1,10 +1,12 @@
 import Head from 'next/head'
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Card, Form, Button, Spinner, Alert, InputGroup, Table } from 'react-bootstrap';
+import { Card, Form, Button, Spinner, Alert, InputGroup, Table, Stack } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import jwt from "jwt-decode";
+import { PencilSquare } from 'react-bootstrap-icons';
 
 import AuthOnly from '@/components/AuthOnly';
 
@@ -52,7 +54,7 @@ export function ProductsContent() {
                 const res = await fetch(`/api/products/user/${uId}`, {
                     headers: { "x-auth-token": token }
                 });
-    
+
                 const data = await res.json();
 
                 if (res.status === 200) {
@@ -62,7 +64,7 @@ export function ProductsContent() {
                 } else {
                     console.log(data);
                 }
-    
+
             } catch (error) {
                 console.log(error.message);
             }
@@ -186,6 +188,7 @@ export function ProductsContent() {
                                         <th>Name</th>
                                         <th>Title</th>
                                         <th>Quantity</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -195,6 +198,11 @@ export function ProductsContent() {
                                             <td>{product["name"]}</td>
                                             <td>£{product["price"]}</td>
                                             <td>{product["quantity"]}</td>
+                                            <td>
+                                                <Stack direction="horizontal" gap={3}>
+                                                    <Link className='table-btns' href={`products/${product.id}`}><PencilSquare /></Link>
+                                                </Stack>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
