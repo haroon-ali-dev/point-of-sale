@@ -3,7 +3,7 @@ CREATE TABLE products (
     u_id INT,
     p_id VARCHAR(10) UNIQUE,
     name VARCHAR(50),
-    price NUMERIC(4, 2),
+    price NUMERIC(6, 2),
     quantity INT,
     CONSTRAINT fk_user
       FOREIGN KEY(u_id) 
