@@ -48,7 +48,30 @@ export default function Product({ product, token }) {
     });
 
     const onSubmit = async (formData) => {
-        console.log(formData);
+        setReqInProcess(true);
+        setAlert([false, "", ""]);
+
+        try {
+            const res = await fetch(`/api/products/${product.id}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json", "x-auth-token": token },
+                body: JSON.stringify({ uId: product.u_id, ...formData })
+            });
+
+            const data = await res.json();
+
+            if (res.status === 200) {
+                setAlert([true, "success", "Product updated."]);
+            } else {
+                console.log(data.message);
+                setAlert([true, "danger", "There was a problem."]);
+            }
+        } catch (error) {
+            console.log(data.message);
+            setAlert([true, "danger", "There was a problem."]);
+        } finally {
+            setReqInProcess(false);
+        }
     }
 
     return (
