@@ -193,7 +193,7 @@ export function ProductsContent() {
                                         <tr key={i}>
                                             <td>{product["p_id"]}</td>
                                             <td>{product["name"]}</td>
-                                            <td>{product["price"]}</td>
+                                            <td>£{product["price"]}</td>
                                             <td>{product["quantity"]}</td>
                                         </tr>
                                     ))}
