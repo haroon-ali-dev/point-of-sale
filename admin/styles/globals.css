@@ -23,6 +23,10 @@
   color: black;
 }
 
+.table-btns:hover {
+  cursor: pointer;
+}
+
 @media (min-width: 576px) {
   .card-form {
     width: 45%;

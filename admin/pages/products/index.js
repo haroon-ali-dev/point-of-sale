@@ -253,7 +253,7 @@ export function ProductsContent() {
                                             <td>
                                                 <Stack direction="horizontal" gap={3}>
                                                     <Link className='table-btns' href={`products/${product.id}/${tokenData[0]}`}><PencilSquare /></Link>
-                                                    <Trash onClick={() => {
+                                                    <Trash className='table-btns' onClick={() => {
                                                         setReqInProcess(false); setAlert([false, "", ""]);; setShowDeleteModal([true, product.id]);
                                                     }} />
                                                 </Stack>
