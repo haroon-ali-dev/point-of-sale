@@ -11,7 +11,7 @@ export default function Cart({ cart }) {
                         <Text style={styles.name}>{item.name} x{item.quantity}</Text>
                     </View>
                     <View style={styles.containerPrice}>
-                        <Text style={styles.price}>{item.price}</Text>
+                        <Text style={styles.price}>£{item.price}</Text>
                     </View>
                     <View style={styles.containerBtn}>
                         <Pressable>
@@ -28,12 +28,14 @@ export default function Cart({ cart }) {
 const styles = StyleSheet.create({
     containerMain: {
         flexDirection: 'row',
-        backgroundColor: 'green',
         marginHorizontal: 10,
-        marginTop: 10
+        marginTop: 10,
+        paddingVertical: 20,
+        paddingHorizontal: 10,
+        borderWidth: 1
     },
     containerName: {
-        flex: 1,
+        flex: 3,
         alignItems: 'center',
         justifyContent: 'center'
     },
