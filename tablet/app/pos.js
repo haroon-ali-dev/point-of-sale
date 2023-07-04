@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Pressable, Alert } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import NavBar from "../components/NavBar";
 import AuthOnly from "../components/AuthOnly";
+import Cart from "../components/Cart";
 
 export default function PointOfSale() {
     return (
@@ -14,19 +14,7 @@ export default function PointOfSale() {
 
 function PointOfSaleContent() {
     const [productId, setProductId] = useState("");
-
-    const readToken = async () => {
-        try {
-            const token = await AsyncStorage.getItem('token');
-            if (token !== null) {
-
-            }
-        } catch (e) {
-            console.log(e.message);
-        }
-    }
-
-    readToken();
+    const [cart, setCart] = useState([]);
 
     const addProduct = async () => {
         try {
@@ -39,7 +27,13 @@ function PointOfSaleContent() {
             const data = await res.json();
 
             if (res.status === 200) {
-                console.log(data);
+                setCart([...cart, {
+                    id: data.p_id,
+                    name: data.name,
+                    price: data.price,
+                    quantity: 1
+                }]);
+                setProductId("");
             } else {
                 Alert.alert("Error", data.message);
             }
@@ -66,7 +60,7 @@ function PointOfSaleContent() {
                 </View>
                 <View style={styles.containerRightPanel}>
                     <View style={styles.containerCart}>
-
+                        <Cart cart={cart} />
                     </View>
                     <View style={styles.containerPayBtn}>
 
