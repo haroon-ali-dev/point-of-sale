@@ -80,6 +80,12 @@ function PointOfSaleContent() {
                     </View>
                     <View style={styles.containerPayBtn}>
                         <Text style={styles.total}>£{total()}</Text>
+                        <Pressable
+                            style={total() === "0.00" ? styles.payBtnDisabled : styles.payBtn}
+                            onPress={() => Alert.alert("Payment", "Pay now please.")}
+                        >
+                            <Text style={styles.payBtnText}>Pay</Text>
+                        </Pressable>
                     </View>
                 </View>
             </View>
@@ -128,9 +134,24 @@ const styles = StyleSheet.create({
         flex: 1,
         borderWidth: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        gap: 10
     },
     total: {
         fontSize: 30
+    },
+    payBtn: {
+        backgroundColor: 'black',
+        paddingHorizontal: 50,
+        paddingVertical: 20
+    },
+    payBtnDisabled: {
+        backgroundColor: 'grey',
+        paddingHorizontal: 50,
+        paddingVertical: 20
+    },
+    payBtnText: {
+        fontSize: 25,
+        color: 'white'
     }
 });
