@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Pressable, Alert } from "react-native";
+import { View, Text, StyleSheet, TextInput, Pressable, Alert, Keyboard } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import NavBar from "../components/NavBar";
@@ -30,7 +30,7 @@ function PointOfSaleContent() {
                 const findProduct = cart.find(product => product.pId === data["p_id"]);
 
                 if (findProduct) {
-                    setCart(cart.map(product => product.pId === data["p_id"] ? { ...product, quantity: product.quantity + 1 } : product ));
+                    setCart(cart.map(product => product.pId === data["p_id"] ? { ...product, quantity: product.quantity + 1 } : product));
                 } else {
                     setCart([...cart, {
                         pId: data["p_id"],
@@ -39,6 +39,8 @@ function PointOfSaleContent() {
                         quantity: 1
                     }]);
                 }
+
+                Keyboard.dismiss();
 
                 setProductId("");
             } else {
@@ -51,6 +53,10 @@ function PointOfSaleContent() {
 
     const deleteProduct = (pId) => {
         setCart(cart.filter(product => product.pId !== pId));
+    }
+
+    const total = () => {
+        return cart.reduce((a, c) => a + (c.price * c.quantity), 0).toFixed(2);
     }
 
     return (
@@ -73,7 +79,7 @@ function PointOfSaleContent() {
                         <Cart cart={cart} deleteProduct={deleteProduct} />
                     </View>
                     <View style={styles.containerPayBtn}>
-
+                        <Text style={styles.total}>£{total()}</Text>
                     </View>
                 </View>
             </View>
@@ -120,6 +126,11 @@ const styles = StyleSheet.create({
     },
     containerPayBtn: {
         flex: 1,
-        borderWidth: 1
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    total: {
+        fontSize: 30
     }
 });
