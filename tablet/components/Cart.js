@@ -20,7 +20,7 @@ export default function Cart({ cart }) {
                     </View>
                 </View>
             )}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.pId}
         />
     );
 }

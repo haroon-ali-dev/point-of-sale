@@ -27,12 +27,19 @@ function PointOfSaleContent() {
             const data = await res.json();
 
             if (res.status === 200) {
-                setCart([...cart, {
-                    id: data.p_id,
-                    name: data.name,
-                    price: data.price,
-                    quantity: 1
-                }]);
+                const findProduct = cart.find(product => product.pId === data["p_id"]);
+
+                if (findProduct) {
+                    setCart(cart.map(product => product.pId === data["p_id"] ? { ...product, quantity: product.quantity + 1 } : product ));
+                } else {
+                    setCart([...cart, {
+                        pId: data["p_id"],
+                        name: data.name,
+                        price: data.price,
+                        quantity: 1
+                    }]);
+                }
+
                 setProductId("");
             } else {
                 Alert.alert("Error", data.message);
