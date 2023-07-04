@@ -1,7 +1,7 @@
 import { FlatList, Text, View, Pressable, StyleSheet } from "react-native";
 import { Feather } from '@expo/vector-icons';
 
-export default function Cart({ cart }) {
+export default function Cart({ cart, deleteProduct }) {
     return (
         <FlatList
             data={cart}
@@ -14,7 +14,7 @@ export default function Cart({ cart }) {
                         <Text style={styles.price}>£{item.price}</Text>
                     </View>
                     <View style={styles.containerBtn}>
-                        <Pressable>
+                        <Pressable onPress={() => deleteProduct(item.pId)}>
                             <Feather name="trash-2" size={30} color="black" />
                         </Pressable>
                     </View>

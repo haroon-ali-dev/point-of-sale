@@ -49,10 +49,13 @@ function PointOfSaleContent() {
         }
     }
 
+    const deleteProduct = (pId) => {
+        setCart(cart.filter(product => product.pId !== pId));
+    }
+
     return (
         <>
             <NavBar />
-
             <View style={styles.container}>
                 <View style={styles.containerAddProduct}>
                     <TextInput
@@ -67,7 +70,7 @@ function PointOfSaleContent() {
                 </View>
                 <View style={styles.containerRightPanel}>
                     <View style={styles.containerCart}>
-                        <Cart cart={cart} />
+                        <Cart cart={cart} deleteProduct={deleteProduct} />
                     </View>
                     <View style={styles.containerPayBtn}>
 
