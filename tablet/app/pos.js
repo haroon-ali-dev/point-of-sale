@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
+import { View, Text, StyleSheet, TextInput, Pressable, Alert } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import NavBar from "../components/NavBar";
 import AuthOnly from "../components/AuthOnly";
@@ -37,15 +38,20 @@ function PointOfSaleContent() {
 
             const data = await res.json();
 
-            console.log(data);
+            if (res.status === 200) {
+                console.log(data);
+            } else {
+                Alert.alert("Error", data.message);
+            }
         } catch (error) {
-            console.log(error.message);
+            Alert.alert("Error", error.message);
         }
     }
 
     return (
         <>
             <NavBar />
+
             <View style={styles.container}>
                 <View style={styles.containerAddProduct}>
                     <TextInput
