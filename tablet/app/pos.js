@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavBar from "../components/NavBar";
 import AuthOnly from "../components/AuthOnly";
 import Cart from "../components/Cart";
+import PayModal from "../components/PayModal";
 
 export default function PointOfSale() {
     return (
@@ -15,6 +16,7 @@ export default function PointOfSale() {
 function PointOfSaleContent() {
     const [productId, setProductId] = useState("");
     const [cart, setCart] = useState([]);
+    const [showPayModal, setShowPayModal] = useState(false);
 
     const addProduct = async () => {
         try {
@@ -62,6 +64,9 @@ function PointOfSaleContent() {
     return (
         <>
             <NavBar />
+
+            <PayModal showPayModal={showPayModal} setShowPayModal={setShowPayModal} />
+
             <View style={styles.container}>
                 <View style={styles.containerAddProduct}>
                     <TextInput
@@ -82,7 +87,7 @@ function PointOfSaleContent() {
                         <Text style={styles.total}>£{total()}</Text>
                         <Pressable
                             style={total() === "0.00" ? styles.payBtnDisabled : styles.payBtn}
-                            onPress={() => Alert.alert("Payment", "Pay now please.")}
+                            onPress={() => setShowPayModal(true)}
                         >
                             <Text style={styles.payBtnText}>Pay</Text>
                         </Pressable>
