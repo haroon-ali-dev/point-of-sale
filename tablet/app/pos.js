@@ -65,7 +65,11 @@ function PointOfSaleContent() {
         <>
             <NavBar />
 
-            <PayModal showPayModal={showPayModal} setShowPayModal={setShowPayModal} />
+            <PayModal
+                showPayModal={showPayModal}
+                setShowPayModal={setShowPayModal}
+                amount={total()}
+            />
 
             <View style={styles.container}>
                 <View style={styles.containerAddProduct}>
@@ -88,6 +92,7 @@ function PointOfSaleContent() {
                         <Pressable
                             style={total() === "0.00" ? styles.payBtnDisabled : styles.payBtn}
                             onPress={() => setShowPayModal(true)}
+                            disabled={total() === "0.00"}
                         >
                             <Text style={styles.payBtnText}>Pay</Text>
                         </Pressable>
