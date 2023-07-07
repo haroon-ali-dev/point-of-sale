@@ -68,6 +68,7 @@ function PointOfSaleContent() {
             <PayModal
                 showPayModal={showPayModal}
                 setShowPayModal={setShowPayModal}
+                setCart={setCart}
                 amount={total()}
             />
 

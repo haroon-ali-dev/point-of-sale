@@ -1,7 +1,9 @@
 import { Modal, StyleSheet, View, Text, Pressable } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 
-export default function PayModal({ showPayModal, setShowPayModal, amount }) {
+import Payment from "./Payment";
+
+export default function PayModal({ showPayModal, setShowPayModal, amount, setCart }) {
     return (
         <Modal
             animationType="slide"
@@ -18,8 +20,12 @@ export default function PayModal({ showPayModal, setShowPayModal, amount }) {
                     </View>
                     <View style={styles.divider}></View>
                     <View style={styles.body}>
-                        
-                    <Text style={styles.amount}>£{amount}</Text>
+                        <Text style={styles.amount}>£{amount}</Text>
+                        <Payment
+                            amount={amount}
+                            setCart={setCart}
+                            setShowPayModal={setShowPayModal}
+                        />
                     </View>
                 </View>
             </View>
@@ -56,7 +62,8 @@ const styles = StyleSheet.create({
     body: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        gap: 10
     },
     amount: {
         fontSize: 50
