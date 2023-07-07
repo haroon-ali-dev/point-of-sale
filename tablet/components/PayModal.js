@@ -16,6 +16,7 @@ export default function PayModal({ showPayModal, setShowPayModal, amount }) {
                             <AntDesign name="closecircle" size={30} color="black" />
                         </Pressable>
                     </View>
+                    <View style={styles.divider}></View>
                     <View style={styles.body}>
                         
                     <Text style={styles.amount}>£{amount}</Text>
@@ -46,6 +47,11 @@ const styles = StyleSheet.create({
     },
     heading: {
         fontSize: 25
+    },
+    divider: {
+        backgroundColor: 'black',
+        height: 1,
+        marginTop: 15
     },
     body: {
         flex: 1,
