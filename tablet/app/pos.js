@@ -33,7 +33,11 @@ function PointOfSaleContent() {
                 const findProduct = cart.find(product => product.pId === data["p_id"]);
 
                 if (findProduct) {
-                    setCart(cart.map(product => product.pId === data["p_id"] ? { ...product, quantity: product.quantity + 1 } : product));
+                    if (findProduct.quantity >= +data.quantity) {
+                        Alert.alert("Error", "No more product quantity available.");
+                    } else {
+                        setCart(cart.map(product => product.pId === data["p_id"] ? { ...product, quantity: product.quantity + 1 } : product));
+                    }
                 } else {
                     setCart([...cart, {
                         pId: data["p_id"],
