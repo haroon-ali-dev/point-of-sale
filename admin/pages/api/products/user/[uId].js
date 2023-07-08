@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     try {
         const { uId } = req.query;
 
-        const dbRes = await pool.query("SELECT * FROM products WHERE u_id = $1", [+uId]);
+        const dbRes = await pool.query("SELECT * FROM products WHERE u_id = $1 ORDER BY id DESC", [+uId]);
   
         res.json(dbRes.rows);
       } catch (error) {
