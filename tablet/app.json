@@ -5,6 +5,9 @@
       "bundler": "metro"
     },
     "name": "point-of-sale",
-    "slug": "point-of-sale"
+    "slug": "point-of-sale",
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
