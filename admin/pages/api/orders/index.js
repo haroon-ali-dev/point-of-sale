@@ -21,6 +21,10 @@ export default async function handler(req, res) {
                 req.body.total
             ]);
 
+            for (let item of req.body.cart) {
+                await client.query("UPDATE products SET quantity = (quantity - $1) WHERE p_id = $2", [item.quantity, item.pId]);
+            }
+
             await client.query("COMMIT");
 
             res.json({ message: "Order created." });
