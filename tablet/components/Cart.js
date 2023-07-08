@@ -11,7 +11,7 @@ export default function Cart({ cart, deleteProduct }) {
                         <Text style={styles.name}>{item.name} x{item.quantity}</Text>
                     </View>
                     <View style={styles.containerPrice}>
-                        <Text style={styles.price}>£{item.price}</Text>
+                        <Text style={styles.price}>£{item.price.toFixed(2)}</Text>
                     </View>
                     <View style={styles.containerBtn}>
                         <Pressable onPress={() => deleteProduct(item.pId)}>

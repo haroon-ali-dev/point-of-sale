@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Pressable, Alert, Keyboard } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import jwt_decode from "jwt-decode";
 
 import NavBar from "../components/NavBar";
 import AuthOnly from "../components/AuthOnly";
@@ -37,7 +38,7 @@ function PointOfSaleContent() {
                     setCart([...cart, {
                         pId: data["p_id"],
                         name: data.name,
-                        price: data.price,
+                        price: +data.price,
                         quantity: 1
                     }]);
                 }
@@ -61,6 +62,30 @@ function PointOfSaleContent() {
         return cart.reduce((a, c) => a + (c.price * c.quantity), 0).toFixed(2);
     }
 
+    const saveOrder = async () => {
+        try {
+            const token = await AsyncStorage.getItem('token');
+            const { uId } = jwt_decode(token);
+
+            const res = await fetch(`http://192.168.8.101:3000/api/orders`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "x-auth-token": token },
+                body: JSON.stringify({ uId, cart, total: +total() })
+            });
+
+            const data = await res.json();
+
+            if (res.status === 200) {
+                Alert.alert('Success', 'Order completed!');
+                setCart([]);
+            } else {
+                Alert.alert("Error", data.message);
+            }
+        } catch (error) {
+            Alert.alert("Error", error.message);
+        }
+    }
+
     return (
         <>
             <NavBar />
@@ -70,6 +95,7 @@ function PointOfSaleContent() {
                 setShowPayModal={setShowPayModal}
                 setCart={setCart}
                 amount={total()}
+                saveOrder={saveOrder}
             />
 
             <View style={styles.container}>

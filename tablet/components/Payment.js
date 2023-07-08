@@ -3,7 +3,7 @@ import { StripeProvider, useStripe } from '@stripe/stripe-react-native';
 import { View, Button, Alert } from "react-native";
 import { useRouter } from "expo-router";
 
-export default function Payment({ amount, setCart, setShowPayModal }) {
+export default function Payment({ amount, setCart, setShowPayModal, saveOder }) {
     const router = useRouter();
 
     const { initPaymentSheet, presentPaymentSheet } = useStripe();
@@ -56,8 +56,7 @@ export default function Payment({ amount, setCart, setShowPayModal }) {
         if (error) {
             Alert.alert(`Error code: ${error.code}`, error.message);
         } else {
-            Alert.alert('Success', 'Order completed!');
-            setCart([]);
+            saveOder();
             setShowPayModal(false);
         }
     };
