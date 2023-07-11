@@ -45,6 +45,32 @@ export default function Order({ order }) {
                         </Table>
                     </Card.Body>
                 </Card>
+
+                <Card className='card-list'>
+                    <Card.Body>
+                        <Card.Title>Items</Card.Title>
+                        <Table className='mt-3' striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {order.cart.map((order, i) => (
+                                    <tr key={i}>
+                                        <td>{order.pId}</td>
+                                        <td>{order.name}</td>
+                                        <td>£{order.price.toFixed(2)}</td>
+                                        <td>{order.quantity}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </Card.Body>
+                </Card>
             </main>
         </>
     );
