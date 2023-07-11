@@ -69,6 +69,7 @@ export function OrdersContent() {
                             <Table striped bordered hover>
                                 <thead>
                                     <tr>
+                                        <th>#</th>
                                         <th>Date</th>
                                         <th>Items</th>
                                         <th>Total</th>
@@ -78,6 +79,7 @@ export function OrdersContent() {
                                 <tbody>
                                     {orders.map((order, i) => (
                                         <tr key={i}>
+                                            <td>{order.id}</td>
                                             <td>{moment(order["date"]).utcOffset("+0100").format("DD-MM-YYYY")}</td>
                                             <td>{order.cart.length}</td>
                                             <td>£{order["total"]}</td>
