@@ -33,7 +33,7 @@ export default function NavBar() {
                 <Navbar.Brand href={token ? "/products" : "/"} as={Link}><House size={30} /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className={styles.navBarCollapse}>
-                    <Nav>
+                    <Nav activeKey={router.pathname}>
                         {!token &&
                             <>
                                 <Nav.Link href="/" as={Link}>Register</Nav.Link>

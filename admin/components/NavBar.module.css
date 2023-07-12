@@ -1,11 +1,3 @@
-.navbar a {
-    color: white;
-}
-
-.navbar a:hover {
-    color: gray;
-}
-
 .navBarCollapse {
     justify-content: flex-end;
 }
