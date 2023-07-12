@@ -5,14 +5,22 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import styles from '@/styles/Home.module.css'
+import NoAuth from '@/components/NoAuth';
+
+import styles from '@/styles/Home.module.css';
+
+export default function Register() {
+    return (
+        <NoAuth><RegisterContent /></NoAuth>
+    );
+}
 
 const schema = yup.object({
   email: yup.string().max(256).email().required().label("Email"),
   password: yup.string().min(3).max(15).required().label("Password"),
 }).required();
 
-export default function Register() {
+export function RegisterContent() {
   const [reqInProcess, setReqInProcess] = useState(false);
   const [alert, setAlert] = useState([false, "", ""]);
 
