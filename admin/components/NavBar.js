@@ -3,7 +3,7 @@ import { AppContext } from '@/pages/_app';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Nav, Navbar, Container } from 'react-bootstrap';
-import { House } from 'react-bootstrap-icons';
+import { House, BoxArrowLeft } from 'react-bootstrap-icons';
 
 import styles from "./NavBar.module.css";
 
@@ -44,7 +44,7 @@ export default function NavBar() {
                             <>
                                 <Nav.Link href="/products" as={Link}>Products</Nav.Link>
                                 <Nav.Link href="/orders" as={Link}>Orders</Nav.Link>
-                                <Nav.Link href="#" onClick={logout}>Logout</Nav.Link>
+                                <Nav.Link href="#" onClick={logout}><BoxArrowLeft className='me-1' size={18} />Logout</Nav.Link>
                             </>
                         )}
 
