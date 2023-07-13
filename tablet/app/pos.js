@@ -110,9 +110,11 @@ function PointOfSaleContent() {
                         value={productId}
                         onChangeText={setProductId}
                     />
-                    <Pressable style={styles.btn} onPress={addProduct}>
-                        <Text style={styles.btnText}>Add</Text>
-                    </Pressable>
+                    <View styles={styles.btnContainer}>
+                        <Pressable style={styles.btn} android_ripple={{ color: 'black', borderless: true }} onPress={addProduct}>
+                            <Text style={styles.btnText}>Add</Text>
+                        </Pressable>
+                    </View>
                 </View>
                 <View style={styles.containerRightPanel}>
                     <View style={styles.containerCart}>
@@ -154,8 +156,11 @@ const styles = StyleSheet.create({
         height: 50,
         padding: 10
     },
+    btnContainer: {
+        borderRadius: 10
+    },
     btn: {
-        backgroundColor: 'black',
+        backgroundColor: '#198754',
         paddingHorizontal: 20,
         paddingVertical: 10
     },
