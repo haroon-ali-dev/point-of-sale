@@ -122,13 +122,16 @@ function PointOfSaleContent() {
                     </View>
                     <View style={styles.containerPayBtn}>
                         <Text style={styles.total}>£{total()}</Text>
-                        <Pressable
-                            style={total() === "0.00" ? styles.payBtnDisabled : styles.payBtn}
-                            onPress={() => setShowPayModal(true)}
-                            disabled={total() === "0.00"}
-                        >
-                            <Text style={styles.payBtnText}>Pay</Text>
-                        </Pressable>
+                        <View  style={styles.payBtnContainer}>
+                            <Pressable
+                                style={total() === "0.00" ? styles.payBtnDisabled : styles.payBtn}
+                                onPress={() => setShowPayModal(true)}
+                                disabled={total() === "0.00"}
+                                android_ripple={{ color: 'black', borderless: true }}
+                            >
+                                <Text style={styles.payBtnText}>Pay</Text>
+                            </Pressable>
+                        </View>
                     </View>
                 </View>
             </View>
@@ -186,13 +189,16 @@ const styles = StyleSheet.create({
     total: {
         fontSize: 30
     },
+    payBtnContainer: {
+        borderRadius: 10
+    },
     payBtn: {
         backgroundColor: 'black',
         paddingHorizontal: 50,
         paddingVertical: 20
     },
     payBtnDisabled: {
-        backgroundColor: 'grey',
+        backgroundColor: '#adb5bd',
         paddingHorizontal: 50,
         paddingVertical: 20
     },
