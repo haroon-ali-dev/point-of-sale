@@ -15,7 +15,7 @@ export default function Cart({ cart, deleteProduct }) {
                     </View>
                     <View style={styles.containerBtn}>
                         <Pressable onPress={() => deleteProduct(item.pId)}>
-                            <Feather name="trash-2" size={30} color="black" />
+                            <Feather name="trash-2" size={30} color="#dc3545" />
                         </Pressable>
                     </View>
                 </View>

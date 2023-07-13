@@ -18,12 +18,10 @@ export default function NavBar() {
 
     return (
         <View style={styles.container}>
-            <View style={styles.logoutBtnContainer}>
-                <Pressable style={styles.logoutBtn} android_ripple={{ color: 'black', borderless: true }} onPress={logout}>
-                    <SimpleLineIcons name="logout" size={20} color="white" />
-                    <Text style={styles.logoutBtnText}>Logout</Text>
-                </Pressable>
-            </View>
+            <Pressable style={styles.logoutBtn} android_ripple={{ color: 'black', borderless: false }} onPress={logout}>
+                <SimpleLineIcons name="logout" size={20} color="white" />
+                <Text style={styles.logoutBtnText}>Logout</Text>
+            </Pressable>
         </View>
     );
 }
@@ -35,10 +33,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end'
     },
-    logoutBtnContainer: {
-        borderRadius: 10,
-        marginTop: 5
-    },
     logoutBtn: {
         backgroundColor: '#dc3545',
         flexDirection: 'row',
@@ -46,7 +40,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         gap: 10,
         paddingHorizontal: 17,
-        paddingVertical: 10
+        paddingVertical: 10,
+        borderRadius: 10,
+        marginTop: 10
     },
     logoutBtnText: {
         fontSize: 18,

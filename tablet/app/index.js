@@ -73,15 +73,12 @@ export function LoginContent() {
                     <Text style={styles.label}>Password</Text>
                     <TextInput style={styles.input} secureTextEntry value={password} onChangeText={setPassword} />
                 </View>
-                <View style={styles.loginBtnContainer}>
-                    <Pressable
-                        style={styles.loginBtn}
-                        android_ripple={{ color: 'black', borderless: true }}
-                        onPress={login}
-                    >
-                        <Text style={styles.loginBtnText}>Login</Text>
-                    </Pressable>
-                </View>
+                <Pressable
+                    onPress={login}
+                    android_ripple={{ color: 'black' }}
+                    style={styles.loginBtn}>
+                    <Text style={styles.loginBtnText}>Login</Text>
+                </Pressable>
                 {notification.display && (
                     <Notification
                         message={notification.message}
@@ -122,13 +119,10 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 10
     },
-    loginBtnContainer: {
-        marginTop: 5,
-        borderRadius: 10
-    },
     loginBtn: {
         backgroundColor: '#0d6efd',
         padding: 15,
+        borderRadius: 10
     },
     loginBtnText: {
         color: 'white',

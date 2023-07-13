@@ -110,11 +110,9 @@ function PointOfSaleContent() {
                         value={productId}
                         onChangeText={setProductId}
                     />
-                    <View styles={styles.btnContainer}>
-                        <Pressable style={styles.btn} android_ripple={{ color: 'black', borderless: true }} onPress={addProduct}>
-                            <Text style={styles.btnText}>Add</Text>
-                        </Pressable>
-                    </View>
+                    <Pressable style={styles.btn} android_ripple={{ color: 'black' }} onPress={addProduct}>
+                        <Text style={styles.btnText}>Add</Text>
+                    </Pressable>
                 </View>
                 <View style={styles.containerRightPanel}>
                     <View style={styles.containerCart}>
@@ -122,16 +120,14 @@ function PointOfSaleContent() {
                     </View>
                     <View style={styles.containerPayBtn}>
                         <Text style={styles.total}>£{total()}</Text>
-                        <View  style={styles.payBtnContainer}>
-                            <Pressable
-                                style={total() === "0.00" ? styles.payBtnDisabled : styles.payBtn}
-                                onPress={() => setShowPayModal(true)}
-                                disabled={total() === "0.00"}
-                                android_ripple={{ color: 'black', borderless: true }}
-                            >
-                                <Text style={styles.payBtnText}>Pay</Text>
-                            </Pressable>
-                        </View>
+                        <Pressable
+                            style={total() === "0.00" ? styles.payBtnDisabled : styles.payBtn}
+                            onPress={() => setShowPayModal(true)}
+                            disabled={total() === "0.00"}
+                            android_ripple={{ color: 'black', borderless: true }}
+                        >
+                            <Text style={styles.payBtnText}>Pay</Text>
+                        </Pressable>
                     </View>
                 </View>
             </View>
@@ -159,10 +155,8 @@ const styles = StyleSheet.create({
         height: 50,
         padding: 10
     },
-    btnContainer: {
-        borderRadius: 10
-    },
     btn: {
+        borderRadius: 10,
         backgroundColor: '#198754',
         paddingHorizontal: 20,
         paddingVertical: 10
@@ -189,15 +183,14 @@ const styles = StyleSheet.create({
     total: {
         fontSize: 30
     },
-    payBtnContainer: {
-        borderRadius: 10
-    },
     payBtn: {
-        backgroundColor: 'black',
+        borderRadius: 10,
+        backgroundColor: '#0d6efd',
         paddingHorizontal: 50,
         paddingVertical: 20
     },
     payBtnDisabled: {
+        borderRadius: 10,
         backgroundColor: '#adb5bd',
         paddingHorizontal: 50,
         paddingVertical: 20
