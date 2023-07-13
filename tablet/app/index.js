@@ -3,9 +3,16 @@ import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import NoAuth from "../components/NoAuth";
 import Notification from "../components/Notification";
 
 export default function Login() {
+    return (
+        <NoAuth><LoginContent /></NoAuth>
+    );
+}
+
+export function LoginContent() {
     const router = useRouter();
 
     const [notification, setNotification] = useState({
