@@ -124,7 +124,7 @@ function PointOfSaleContent() {
                             style={total() === "0.00" ? styles.payBtnDisabled : styles.payBtn}
                             onPress={() => setShowPayModal(true)}
                             disabled={total() === "0.00"}
-                            android_ripple={{ color: 'black', borderless: true }}
+                            android_ripple={{ color: 'black' }}
                         >
                             <Text style={styles.payBtnText}>Pay</Text>
                         </Pressable>
