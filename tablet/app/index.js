@@ -71,7 +71,7 @@ export function LoginContent() {
                 </View>
                 <View>
                     <Text style={styles.label}>Password</Text>
-                    <TextInput style={styles.input} value={password} onChangeText={setPassword} />
+                    <TextInput style={styles.input} secureTextEntry value={password} onChangeText={setPassword} />
                 </View>
                 <Pressable style={styles.loginBtn}>
                     <Text style={styles.loginBtnText} onPress={login}>Login</Text>
