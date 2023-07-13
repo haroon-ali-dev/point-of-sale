@@ -19,7 +19,7 @@ export default function NavBar() {
     return (
         <View style={styles.container}>
             <View style={styles.logoutBtnContainer}>
-                <Pressable style={styles.logoutBtn} android_ripple={{ color: 'black', borderless: true }} onPress={() => {}}>
+                <Pressable style={styles.logoutBtn} android_ripple={{ color: 'black', borderless: true }} onPress={logout}>
                     <SimpleLineIcons name="logout" size={20} color="white" />
                     <Text style={styles.logoutBtnText}>Logout</Text>
                 </Pressable>
