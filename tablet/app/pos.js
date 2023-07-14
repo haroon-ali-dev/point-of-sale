@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Pressable, Alert, Keyboard } from "react-native";
+import { View, Text, StyleSheet, TextInput, Pressable, Alert, Keyboard, ScrollView } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import jwt_decode from "jwt-decode";
 
@@ -119,15 +119,17 @@ function PointOfSaleContent() {
                         <Cart cart={cart} deleteProduct={deleteProduct} />
                     </View>
                     <View style={styles.containerPayBtn}>
-                        <Text style={styles.total}>£{total()}</Text>
-                        <Pressable
-                            style={total() === "0.00" ? styles.payBtnDisabled : styles.payBtn}
-                            onPress={() => setShowPayModal(true)}
-                            disabled={total() === "0.00"}
-                            android_ripple={{ color: 'black' }}
-                        >
-                            <Text style={styles.payBtnText}>Pay</Text>
-                        </Pressable>
+                        <ScrollView contentContainerStyle={styles.containerPayBtnScroll}>
+                            <Text style={styles.total}>£{total()}</Text>
+                            <Pressable
+                                style={total() === "0.00" ? styles.payBtnDisabled : styles.payBtn}
+                                onPress={() => setShowPayModal(true)}
+                                disabled={total() === "0.00"}
+                                android_ripple={{ color: 'black' }}
+                            >
+                                <Text style={styles.payBtnText}>Pay</Text>
+                            </Pressable>
+                        </ScrollView>
                     </View>
                 </View>
             </View>
@@ -175,9 +177,13 @@ const styles = StyleSheet.create({
     containerPayBtn: {
         flex: 1,
         borderWidth: 1,
+    },
+    containerPayBtnScroll: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         gap: 10
+
     },
     total: {
         fontSize: 30
