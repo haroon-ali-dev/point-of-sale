@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
+import { View, Text, StyleSheet, TextInput, Pressable, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -22,8 +22,11 @@ export function LoginContent() {
     });
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [reqInProcess, setReqInProcess] = useState(false);
 
     const login = async () => {
+        setReqInProcess(true);
+
         try {
             const res = await fetch(`http://192.168.8.101:3000/api/login`, {
                 method: "POST",
@@ -51,6 +54,7 @@ export function LoginContent() {
                 bgColor: "#E2412E"
             });
         } finally {
+            setReqInProcess(false);
             setTimeout(() => {
                 setNotification({
                     message: "",
@@ -77,7 +81,12 @@ export function LoginContent() {
                     onPress={login}
                     android_ripple={{ color: 'black' }}
                     style={styles.loginBtn}>
-                    <Text style={styles.loginBtnText}>Login</Text>
+                    {reqInProcess && (
+                        <ActivityIndicator size="large" />
+                    )}
+                    {!reqInProcess && (
+                        <Text style={styles.loginBtnText}>Login</Text>
+                    )}
                 </Pressable>
                 {notification.display && (
                     <Notification
