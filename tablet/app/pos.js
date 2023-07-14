@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Pressable, Alert, Keyboard, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TextInput, Pressable, Alert, Keyboard, ScrollView, ActivityIndicator } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import jwt_decode from "jwt-decode";
 
@@ -18,8 +18,11 @@ function PointOfSaleContent() {
     const [productId, setProductId] = useState("");
     const [cart, setCart] = useState([]);
     const [showPayModal, setShowPayModal] = useState(false);
+    const [reqInProcess, setReqInProcess] = useState(false);
 
     const addProduct = async () => {
+        setReqInProcess(true);
+
         try {
             const token = await AsyncStorage.getItem('token');
 
@@ -55,6 +58,8 @@ function PointOfSaleContent() {
             }
         } catch (error) {
             Alert.alert("Error", error.message);
+        } finally {
+            setReqInProcess(false);
         }
     }
 
@@ -111,7 +116,12 @@ function PointOfSaleContent() {
                         onChangeText={setProductId}
                     />
                     <Pressable style={styles.btn} android_ripple={{ color: 'black' }} onPress={addProduct}>
-                        <Text style={styles.btnText}>Add</Text>
+                        {reqInProcess && (
+                            <ActivityIndicator />
+                        )}
+                        {!reqInProcess && (
+                            <Text style={styles.btnText}>Add</Text>
+                        )}
                     </Pressable>
                 </View>
                 <View style={styles.containerRightPanel}>
@@ -160,8 +170,10 @@ const styles = StyleSheet.create({
     btn: {
         borderRadius: 10,
         backgroundColor: '#198754',
-        paddingHorizontal: 20,
-        paddingVertical: 10
+        width: 100,
+        height: 45,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     btnText: {
         color: 'white',
