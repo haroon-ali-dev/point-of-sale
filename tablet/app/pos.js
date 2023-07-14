@@ -166,8 +166,7 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     containerRightPanel: {
-        flex: 1,
-        borderWidth: 1
+        flex: 1
     },
     containerCart: {
         flex: 3,
