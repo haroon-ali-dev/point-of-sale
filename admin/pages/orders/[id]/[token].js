@@ -3,7 +3,7 @@ import { Card, Table } from 'react-bootstrap';
 import moment from 'moment';
 
 export async function getServerSideProps({ params }) {
-    const req = await fetch(`http://localhost:3000/api/orders/${+params.id}`, {
+    const req = await fetch(`/api/orders/${+params.id}`, {
         headers: { "x-auth-token": params.token }
     });
     const data = await req.json();

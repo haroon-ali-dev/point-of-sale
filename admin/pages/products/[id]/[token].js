@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { Card, Form, Button, Spinner, Alert, InputGroup } from 'react-bootstrap';
 
 export async function getServerSideProps({ params }) {
-    const req = await fetch(`http://localhost:3000/api/products/${+params.id}`, {
+    const req = await fetch(`/api/products/${+params.id}`, {
         headers: { "x-auth-token": params.token }
     });
     const data = await req.json();
