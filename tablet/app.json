@@ -8,6 +8,18 @@
     "slug": "point-of-sale",
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4e7e7fc5-70b7-40ee-9a74-de998b5b3ec9"
+      }
+    },
+    "owner": "haroon-ali-dev",
+    "android": {
+      "package": "com.haroonalidev.pointofsale"
+    }
   }
 }
