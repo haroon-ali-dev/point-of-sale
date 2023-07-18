@@ -3,7 +3,9 @@ import { Card, Table } from 'react-bootstrap';
 import moment from 'moment';
 
 export async function getServerSideProps({ params }) {
-    const req = await fetch(`/api/orders/${+params.id}`, {
+    const host = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://point-of-sale-tau.vercel.app"
+
+    const req = await fetch(`${host}/api/orders/${+params.id}`, {
         headers: { "x-auth-token": params.token }
     });
     const data = await req.json();

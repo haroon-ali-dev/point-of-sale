@@ -6,7 +6,9 @@ import * as yup from "yup";
 import { Card, Form, Button, Spinner, Alert, InputGroup } from 'react-bootstrap';
 
 export async function getServerSideProps({ params }) {
-    const req = await fetch(`/api/products/${+params.id}`, {
+    const host = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://point-of-sale-tau.vercel.app"
+
+    const req = await fetch(`${host}/api/products/${+params.id}`, {
         headers: { "x-auth-token": params.token }
     });
     const data = await req.json();
