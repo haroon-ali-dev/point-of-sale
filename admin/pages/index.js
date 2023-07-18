@@ -7,7 +7,7 @@ import * as yup from "yup";
 
 import NoAuth from '@/components/NoAuth';
 
-// import styles from '@/styles/Home.module.css';
+import styles from '@/styles/Home.module.css';
 
 export default function Register() {
     return (
