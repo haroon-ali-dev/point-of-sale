@@ -6,6 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import NoAuth from "../components/NoAuth";
 import Notification from "../components/Notification";
 
+import config from "../config.json";
+
 export default function Login() {
     return (
         <NoAuth><LoginContent /></NoAuth>
@@ -24,11 +26,13 @@ export function LoginContent() {
     const [password, setPassword] = useState("");
     const [reqInProcess, setReqInProcess] = useState(false);
 
+    const host = __DEV__ ? config.localHost : "https://point-of-sale-tau.vercel.app";
+
     const login = async () => {
         setReqInProcess(true);
 
         try {
-            const res = await fetch(`http://192.168.8.101:3000/api/login`, {
+            const res = await fetch(`${host}/api/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password })

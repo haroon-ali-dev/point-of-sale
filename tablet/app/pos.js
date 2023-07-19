@@ -8,6 +8,8 @@ import AuthOnly from "../components/AuthOnly";
 import Cart from "../components/Cart";
 import PayModal from "../components/PayModal";
 
+import config from "../config.json";
+
 export default function PointOfSale() {
     return (
         <AuthOnly><PointOfSaleContent /></AuthOnly>
@@ -20,13 +22,15 @@ function PointOfSaleContent() {
     const [showPayModal, setShowPayModal] = useState(false);
     const [reqInProcess, setReqInProcess] = useState(false);
 
+    const host = __DEV__ ? config.localHost : "https://point-of-sale-tau.vercel.app";
+
     const addProduct = async () => {
         setReqInProcess(true);
 
         try {
             const token = await AsyncStorage.getItem('token');
 
-            const res = await fetch(`http://192.168.8.101:3000/api/products/product-id/${productId}`, {
+            const res = await fetch(`${host}/api/products/product-id/${productId}`, {
                 headers: { "x-auth-token": token }
             });
 
@@ -76,7 +80,7 @@ function PointOfSaleContent() {
             const token = await AsyncStorage.getItem('token');
             const { uId } = jwt_decode(token);
 
-            const res = await fetch(`http://192.168.8.101:3000/api/orders`, {
+            const res = await fetch(`${host}/api/orders`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json", "x-auth-token": token },
                 body: JSON.stringify({ uId, cart, total: +total() })
@@ -105,6 +109,7 @@ function PointOfSaleContent() {
                 setCart={setCart}
                 amount={total()}
                 saveOrder={saveOrder}
+                host={host}
             />
 
             <View style={styles.container}>

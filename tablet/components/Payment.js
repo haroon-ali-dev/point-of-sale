@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { StripeProvider, useStripe } from '@stripe/stripe-react-native';
 import { View, Pressable, Alert, StyleSheet, Text } from "react-native";
 
-export default function Payment({ amount, setShowPayModal, saveOder }) {
+export default function Payment({ amount, setShowPayModal, saveOder, host }) {
     const { initPaymentSheet, presentPaymentSheet } = useStripe();
     const [loading, setLoading] = useState(false);
 
@@ -11,7 +11,7 @@ export default function Payment({ amount, setShowPayModal, saveOder }) {
     }, []);
 
     const fetchPaymentSheetParams = async () => {
-        const response = await fetch(`http://192.168.8.101:3000/api/pay`, {
+        const response = await fetch(`${host}/api/pay`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

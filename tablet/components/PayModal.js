@@ -3,7 +3,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 import Payment from "./Payment";
 
-export default function PayModal({ showPayModal, setShowPayModal, amount, setCart, saveOrder }) {
+export default function PayModal({ showPayModal, setShowPayModal, amount, setCart, saveOrder, host }) {
     return (
         <Modal
             animationType="slide"
@@ -26,6 +26,7 @@ export default function PayModal({ showPayModal, setShowPayModal, amount, setCar
                             setCart={setCart}
                             setShowPayModal={setShowPayModal}
                             saveOder={saveOrder}
+                            host={host}
                         />
                     </View>
                 </View>
