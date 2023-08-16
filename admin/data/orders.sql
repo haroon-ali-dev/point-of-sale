@@ -1,10 +1,8 @@
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS orders (
     id SERIAL PRIMARY KEY,
     u_id INT NOT NULL,
     date DATE NOT NULL,
     cart jsonb NOT NULL,
     total NUMERIC(6, 2) NOT NULL,
-    CONSTRAINT fk_user
-      FOREIGN KEY(u_id) 
-	      REFERENCES users(id)
+    CONSTRAINT fk_user FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE
 )

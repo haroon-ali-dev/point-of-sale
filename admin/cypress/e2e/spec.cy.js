@@ -1,5 +1,5 @@
-describe('template spec', () => {
-  it('passes', () => {
-    cy.visit('https://example.cypress.io')
+describe('database reseed', () => {
+  it('reseeds database', () => {
+    cy.task('seedDB');
   })
 })
