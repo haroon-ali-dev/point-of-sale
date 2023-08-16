@@ -8,6 +8,7 @@ A point of sale application which store owners can use to make it easier to sell
 HTML, CSS, JavaScript, React.js, Next.js, PostgreSQL, React Native, Stripe
 
 ## Automated Tests
+### Admin Panel
 - End-to-End testing with Cypress.
 
 ## Features
