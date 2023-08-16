@@ -7,6 +7,9 @@ A point of sale application which store owners can use to make it easier to sell
 ## Tech Stack
 HTML, CSS, JavaScript, React.js, Next.js, PostgreSQL, React Native, Stripe
 
+## Automated Tests
+- End-to-End testing with Cypress.
+
 ## Features
 - Register and login in admin panel.
 - Create, view, update and delete products in admin panel.
