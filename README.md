@@ -9,6 +9,7 @@ HTML, CSS, JavaScript, React.js, Next.js, PostgreSQL, React Native, Stripe.
 
 ## Automated Tests
 - Admin Panel
+    - Integration tests with Jest and Supertest.
     - End-to-End tests with Cypress.
 
 ## Features
