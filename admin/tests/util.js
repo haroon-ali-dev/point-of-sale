@@ -1,12 +1,12 @@
 const request = require('supertest');
 const baseUrl = 'http://localhost:3000';
 
-async function getToken() {
+async function getToken(email, password) {
     const response = await request(baseUrl)
         .post('/api/login')
-        .send({ email: 'haroon@gmail.com', password: 'password321' });
+        .send({ email, password });
     
-    return response.body.token;
+    return response;
 }
 
 module.exports.getToken = getToken;
