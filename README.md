@@ -25,8 +25,11 @@ This application offers a solution to streamline these processes, enabling busin
 - Stripe payments.
 - Mobile tablet app for Android.
 
-## Tech Stack
-HTML, CSS, JavaScript, React.js, Next.js, PostgreSQL, React Native, Stripe.
+## :hammer: Tech Stack
+[![My Skills](https://skillicons.dev/icons?i=html,css,js,react,nextjs,postgres,vercel)](https://skillicons.dev)
+
+## :wrench: Additional Tech
+React Native, Stripe, React Hook Form, Yup.
 
 ## Automated Tests
 - Admin Panel
