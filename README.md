@@ -31,24 +31,23 @@ This application offers a solution to streamline these processes, enabling busin
 ## :wrench: Additional Tech
 React Native, Stripe, React Hook Form, Yup.
 
-## Automated Tests
+## :gear: Automated Tests
 - Admin Panel
     - Unit tests with Jest.
     - Integration tests with Jest and Supertest.
     - End-to-End tests with Cypress.
 
-## Deployment
+## :earth_americas: Deployment
 - Back end (Next.js) deployed to Vercel.
 - Admin panel front end (Next.js) deployed to Vercel.
 - PostgreSQL database deployed to Vercel.
 - Mobile Tablet App deployed to Expo.
 
-## Deployment Links
-- Deployed Admin Panel: https://point-of-sale-tau.vercel.app/
-- Deployed Mobile Tablet App: https://expo.dev/accounts/haroon-ali-dev/projects/point-of-sale/builds/690dea34-ecbd-4ded-8812-dca94c46d3f0
+### :earth_americas: Links
+- [Deployed Admin Panel](https://point-of-sale-tau.vercel.app)
+- [Deployed Mobile Tablet App](https://expo.dev/accounts/haroon-ali-dev/projects/point-of-sale/builds/690dea34-ecbd-4ded-8812-dca94c46d3f0)
 
-## How To Test Mobile Tablet App
-**ANDROID ONLY**
+### How To Test Mobile Tablet App (ANDROID ONLY)
 - Make sure you have registered an account in admin panel and added at least one product.
 - Visit Mobile Tablet App link.
 - Click 'Install'.
