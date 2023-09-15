@@ -47,7 +47,7 @@ React Native, Stripe, React Hook Form, Yup.
 - [Deployed Admin Panel](https://point-of-sale-tau.vercel.app)
 - [Deployed Mobile Tablet App](https://expo.dev/accounts/haroon-ali-dev/projects/point-of-sale/builds/690dea34-ecbd-4ded-8812-dca94c46d3f0)
 
-### How To Test Mobile Tablet App (ANDROID ONLY)
+### :earth_americas: How To Test Mobile Tablet App (ANDROID ONLY)
 - Make sure you have registered an account in admin panel and added at least one product.
 - Visit Mobile Tablet App link.
 - Click 'Install'.
