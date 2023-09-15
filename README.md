@@ -1,8 +1,8 @@
-# Point of Sale
-A point of sale application which store owners can use to make it easier to sell products to their customers in-store.
+# :shopping_cart: Point of Sale
+Experience seamless point of sale management with a versatile website and mobile app. Effortlessly handle products, orders, and payments.
 
-## Screenshots
-![App Screenshot](https://res.cloudinary.com/dembzfkgg/image/upload/v1689949820/pos_screenshot_3f248c502c.png)
+## :computer: Demo
+https://github.com/haroon-ali-dev/point-of-sale/assets/87202358/b5401fa2-d532-49a7-bd10-d86338f01c27
 
 ## Tech Stack
 HTML, CSS, JavaScript, React.js, Next.js, PostgreSQL, React Native, Stripe.
