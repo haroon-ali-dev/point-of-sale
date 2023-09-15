@@ -10,6 +10,14 @@ Traditional cash registers and manual tracking systems can be error-prone, time-
 ## :heavy_check_mark: Solution
 This application offers a solution to streamline these processes, enabling businesses to handle transactions swiftly, maintain precise inventory records, and enhance overall operational efficiency.
 
+## :page_facing_up: Features
+- Register and login in admin panel.
+- Create, view, update and delete products in admin panel.
+- Login in mobile tablet app.
+- Add and remove products from cart using product ID in mobile tablet app with automatic quantity calculation.
+- Pay for order in mobile tablet app using debit card with Stripe.
+- View orders in admin panel including order items.
+
 ## Tech Stack
 HTML, CSS, JavaScript, React.js, Next.js, PostgreSQL, React Native, Stripe.
 
@@ -18,14 +26,6 @@ HTML, CSS, JavaScript, React.js, Next.js, PostgreSQL, React Native, Stripe.
     - Unit tests with Jest.
     - Integration tests with Jest and Supertest.
     - End-to-End tests with Cypress.
-
-## Features
-- Register and login in admin panel.
-- Create, view, update and delete products in admin panel.
-- Login in mobile tablet app.
-- Add and remove products from cart using product ID in mobile tablet app with automatic quantity calculation.
-- Pay for order in mobile tablet app using debit card with Stripe.
-- View orders in admin panel including order items.
 
 ## Utilization
 - Admin panel fully responsive.
