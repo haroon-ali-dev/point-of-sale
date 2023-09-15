@@ -18,6 +18,13 @@ This application offers a solution to streamline these processes, enabling busin
 - Pay for order in mobile tablet app using debit card with Stripe.
 - View orders in admin panel including order items.
 
+## :bookmark_tabs: Utilization
+- Admin panel fully responsive.
+- Data fetching SSR in Next.js for products and orders in admin panel.
+- Authentication with JWT.
+- Stripe payments.
+- Mobile tablet app for Android.
+
 ## Tech Stack
 HTML, CSS, JavaScript, React.js, Next.js, PostgreSQL, React Native, Stripe.
 
@@ -26,13 +33,6 @@ HTML, CSS, JavaScript, React.js, Next.js, PostgreSQL, React Native, Stripe.
     - Unit tests with Jest.
     - Integration tests with Jest and Supertest.
     - End-to-End tests with Cypress.
-
-## Utilization
-- Admin panel fully responsive.
-- Data fetching SSR in Next.js for products and orders in admin panel.
-- Authentication with JWT.
-- Stripe payments.
-- Mobile tablet app for Android.
 
 ## Deployment
 - Back end (Next.js) deployed to Vercel.
