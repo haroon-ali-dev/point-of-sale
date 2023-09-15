@@ -26,10 +26,10 @@ This application offers a solution to streamline these processes, enabling busin
 - Mobile tablet app for Android.
 
 ## :hammer: Tech Stack
-[![My Skills](https://skillicons.dev/icons?i=html,css,js,react,nextjs,postgres,vercel)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=html,css,js,react,nextjs,postgres,jest,vercel)](https://skillicons.dev)
 
 ## :wrench: Additional Tech
-React Native, Stripe, React Hook Form, Yup.
+React Native, Stripe, React Hook Form, Yup, Jest, Cypress.
 
 ## :gear: Automated Tests
 - Admin Panel
