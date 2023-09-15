@@ -4,6 +4,12 @@ Experience seamless point of sale management with a versatile website and mobile
 ## :computer: Demo
 https://github.com/haroon-ali-dev/point-of-sale/assets/87202358/b5401fa2-d532-49a7-bd10-d86338f01c27
 
+## :x: Problem
+Traditional cash registers and manual tracking systems can be error-prone, time-consuming, and lack the capabilities to manage inventory effectively. This leads to challenges in tracking sales, managing stock levels, and ensuring a seamless customer checkout experience.
+
+## :heavy_check_mark: Solution
+This application offers a solution to streamline these processes, enabling businesses to handle transactions swiftly, maintain precise inventory records, and enhance overall operational efficiency.
+
 ## Tech Stack
 HTML, CSS, JavaScript, React.js, Next.js, PostgreSQL, React Native, Stripe.
 
