@@ -29,7 +29,7 @@ This application offers a solution to streamline these processes, enabling busin
 [![My Skills](https://skillicons.dev/icons?i=html,css,bootstrap,js,react,nextjs,postgres,jest,vercel)](https://skillicons.dev)
 
 ## :wrench: Additional Tech
-React Native, Stripe, React Hook Form, Yup, Jest, Cypress.
+React Native, Stripe, React Hook Form, Yup, SuperTest, Cypress.
 
 ## :gear: Automated Tests
 - Admin Panel
